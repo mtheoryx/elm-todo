@@ -1,6 +1,7 @@
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html exposing (beginnerProgram)
+import Html.Events exposing (onInput)
 
 main =
     beginnerProgram
@@ -41,7 +42,9 @@ todoList todos =
 
 view model =
     div []
-        [ input [ type_ "text" ] []
+        [ input [ type_ "text"
+        , onInput UpdateText] []
         , button [] [ text "Add Todo" ]
+        , div [] [ text model.todo ]
         , todoList model.todos
         ]
