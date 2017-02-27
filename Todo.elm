@@ -13,6 +13,7 @@ main =
 --model
 type alias Model =
     { todo: String
+    , todos: List String
     }
 
 model =
