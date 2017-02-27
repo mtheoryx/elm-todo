@@ -1,7 +1,8 @@
 import Html exposing (..)
+import Html.Attributes exposing (..)
 
 main =
-    div [] [ text "Hello World" ]
+    view
 
 --model
 
@@ -9,3 +10,8 @@ main =
 
 --view
 
+view =
+    div []
+        [ input [ type_ "text" ] []
+        , button [] [ text "Add Todo" ]
+        ]
