@@ -22,11 +22,14 @@ model =
 
 --update
 type Msg
-    = UpdateText String
+    = AddItem
+    | UpdateText String
     | RemoveItem String
 
 update msg model =
     case msg of
+        AddItem ->
+            { model | todos = model.todo :: model.todos }
         UpdateText text ->
             { model | todo = text }
 
@@ -53,7 +56,7 @@ view model =
     div []
         [ input [ type_ "text"
         , onInput UpdateText] []
-        , button [] [ text "Add Todo" ]
+        , button [ onClick AddItem ] [ text "Add Todo" ]
         , div [] [ text model.todo ]
         , todoList model.todos
         ]
