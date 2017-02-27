@@ -1,8 +1,13 @@
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Html exposing (beginnerProgram)
 
 main =
-    view
+    beginnerProgram
+        { model = model
+        , update = update
+        , view = view
+        }
 
 --model
 type alias Model =
@@ -15,8 +20,12 @@ model =
     }
 
 --update
+type Msg = UpdateText String
 
-
+update msg model =
+    case msg of
+        UpdateText text ->
+            { model | todo = text }
 
 --view
 
@@ -30,7 +39,7 @@ todoList todos =
     in
         ul [] children
 
-view =
+view model =
     div []
         [ input [ type_ "text" ] []
         , button [] [ text "Add Todo" ]
