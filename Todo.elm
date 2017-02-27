@@ -1,7 +1,7 @@
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html exposing (beginnerProgram)
-import Html.Events exposing (onInput)
+import Html.Events exposing (onInput, onClick)
 
 main =
     beginnerProgram
@@ -21,18 +21,27 @@ model =
     }
 
 --update
-type Msg = UpdateText String
+type Msg
+    = UpdateText String
+    | RemoveItem String
 
 update msg model =
     case msg of
         UpdateText text ->
             { model | todo = text }
 
+        RemoveItem todo ->
+            { model |
+                todos =
+                    List.filter (\t -> t /= todo) model.todos}
+
 --view
 
 todoItem todo =
     li []
-        [ text todo ]
+        [ text todo
+        , button [ onClick (RemoveItem todo) ] [ text "X" ]
+        ]
 
 todoList todos =
     let
